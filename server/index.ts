@@ -19,8 +19,8 @@ import { prisma } from './generated/prisma-client';
 
 const port = parseInt(process.env.PORT as any, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
-// const nextJSApp = next({ dev, dir: dev ? './client' : './dist' });
-const nextJSApp = next({ dev });
+const nextJSApp = next({ dev, dir: dev ? './' : './dist' });
+// const nextJSApp = next({ dev });
 const handle = nextJSApp.getRequestHandler();
 const debug = require('debug')('merida:main');
 const schemaWithMiddleware = applyMiddleware(schema);
@@ -29,7 +29,7 @@ const FileStore = require('session-file-store')(session);
 const sessionParser = session({
   secret: process.env.SESSION_SECRET as string,
   store: new FileStore({
-    path: path.join(__dirname, 'sessions'),
+    path: path.join(__dirname, '..', 'sessions'),
     secret: process.env.SESSION_SECRET as string
   }),
   proxy: true,

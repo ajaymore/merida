@@ -8,5 +8,6 @@ module.exports = withCSS({
     };
 
     return config;
-  }
+  },
+  distDir: process.env.NODE_ENV === 'production' ? './dist/.next' : './.next'
 });

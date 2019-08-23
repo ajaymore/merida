@@ -19,8 +19,9 @@
   "license": "ISC",
   "scripts": {
     "dev": "dotenv nodemon server/index.ts",
-    "build": "rm -rf dist && babel --config-file ./server.babelrc --extensions '.ts,.tsx' ./server --out-dir dist/ && npm run copyfiles && npm run nextbuild",
-    "nextbuild": "next build",
+    "build": "npm run build:server && npm run build:client && npm run copyfiles",
+    "build:server": "rm -rf dist && babel --config-file ./server.babelrc --extensions '.ts,.tsx' ./server --out-dir dist/ && npm run copyfiles && npm run nextbuild",
+    "build:client": "dotenv next build",
     "copyfiles": "copyfiles \"./src/**/*.graphql\" \"./src/**/*.json\" \"./src/**/*.ejs\" \"./src/**/*.xlsx\" dist -u 1",
     "start": "dotenv node dist/index.js"
   },
