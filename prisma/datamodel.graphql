@@ -1,0 +1,23 @@
+type User {
+  id: ID! @id
+  email: String! @unique
+  name: String!
+  deviceToken: String
+  contactNumber: String
+  password: String!
+  roles: [Role!]!
+  groups: [Group!]!
+  blocked: Boolean!
+}
+
+type Role {
+  id: ID! @id
+  name: String! @unique
+  users: [User!]!
+}
+
+type Group {
+  id: ID! @id
+  name: String! @unique
+  users: [User!]!
+}

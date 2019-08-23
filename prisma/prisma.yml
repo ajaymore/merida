@@ -1,0 +1,16 @@
+# Specifies the HTTP endpoint of your Prisma API.
+endpoint: ${env:PRISMA_ENDPOINT}
+
+# Specifies secret to access graphql api
+secret: ${env:PRISMA_SECRET}
+
+# Defines your models, each model is mapped to the database as a table.
+datamodel: datamodel.graphql
+
+# Specifies the language and directory for the generated Prisma client.
+generate:
+  - generator: typescript-client
+    output: ../server/generated/prisma-client/
+
+seed:
+  run: yarn ts-node ./prisma/seed.ts
